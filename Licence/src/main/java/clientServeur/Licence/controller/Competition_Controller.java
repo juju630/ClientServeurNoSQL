@@ -28,6 +28,20 @@ public class Competition_Controller {
         return null;
     }
 
+    @GetMapping("/nom/{name}")
+    public List<Competition_Dto> findAllByName(@PathVariable String name){
+        try{
+            List<Competition_Dto> competition_dtoArrayList = new ArrayList<>();
+            for (Competition competition : competition_service.findAllByName(name)){
+                competition_dtoArrayList.add(new Competition_Dto(competition));
+            }
+            return competition_dtoArrayList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @GetMapping("/")
     public List<Competition_Dto> findAll(){
         try{

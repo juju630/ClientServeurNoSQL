@@ -28,6 +28,12 @@ public class Competition_Service {
         return competitionList;
     }
 
+    public List<Competition> findAllByName(String name){
+        List<Competition> competitionList;
+        competitionList = competition_repository.findByName(name);
+        return competitionList;
+    }
+
     public List<Competition> findByAnnee(Integer annee){
         List<Competition> competitionList;
         competitionList = competition_repository.findByAnnee(annee);
@@ -35,7 +41,7 @@ public class Competition_Service {
     }
 
     public void create(){
-        Competition competition = new Competition("Default", 2022, null);
+        Competition competition = new Competition("a", 2022, null);
         competition_repository.save(competition);
     }
 }
