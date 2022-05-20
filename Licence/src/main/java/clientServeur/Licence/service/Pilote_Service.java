@@ -33,4 +33,10 @@ public class Pilote_Service {
         Pilote pilote = new Pilote("Defaut",new Date(),"Français");
         pilote_repository.save(pilote);
     }
+
+    public List<Pilote> findAllByNationalite(String nationalite) {
+        List<Pilote> piloteList;
+        piloteList = pilote_repository.findByNationalite(nationalite);
+        return  piloteList;
+    }
 }

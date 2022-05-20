@@ -20,9 +20,9 @@ public class Pilote_Controller {
     private Pilote_Service pilote_service;
 
     @GetMapping("/{id}")
-    public Pilote_Dto findByID(@PathVariable ObjectId id){
+    public Pilote_Dto findByID(@PathVariable String id){
         try{
-            return new Pilote_Dto(pilote_service.findById(id));
+            return new Pilote_Dto(pilote_service.findById(new ObjectId(id)));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -37,6 +37,20 @@ public class Pilote_Controller {
                 pilote_dtoArrayList.add(new Pilote_Dto(pilote));
             }
             return pilote_dtoArrayList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @GetMapping("/nation/{nationalite}")
+    public List<Pilote_Dto> findAllByNationalite(@PathVariable String nationalite){
+        try{
+            ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
+            for (Pilote pilote : pilote_service.findAllByNationalite(nationalite)){
+                pilote_dtoArrayList.add(new Pilote_Dto(pilote));
+            }
+            return  pilote_dtoArrayList;
         }catch (Exception e){
             e.printStackTrace();
         }
