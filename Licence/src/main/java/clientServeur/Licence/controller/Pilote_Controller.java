@@ -11,7 +11,6 @@ import clientServeur.Licence.service.Pilote_Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pilote")
@@ -58,10 +57,12 @@ public class Pilote_Controller {
         return null;
     }
 
-    @GetMapping("/naissance/{dateNaissance}")
-    public List<Pilote_Dto> findAllByDateNaissance(@PathVariable Date dateNaissance){
+    @GetMapping("/naissance")
+    public List<Pilote_Dto> findAllByDateNaissance(@RequestParam int years,@RequestParam int month,@RequestParam int day){
         try{
+            Date dateNaissance = new Date(years-1900,month,day);
             ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
+
             for (Pilote pilote : pilote_service.findAllByAfterDateNaissance(dateNaissance)){
                 pilote_dtoArrayList.add(new Pilote_Dto(pilote));
             }

@@ -35,14 +35,10 @@ public class Pilote_Service {
     }
 
     public List<Pilote> findAllByNationalite(String nationalite) {
-        List<Pilote> piloteList;
-        piloteList = pilote_repository.findByNationalite(nationalite);
-        return  piloteList;
+        return pilote_repository.findByNationalite(nationalite);
     }
 
     public List<Pilote> findAllByAfterDateNaissance(Date dateNaissance) {
-        List<Pilote> piloteList;
-        piloteList = pilote_repository.findAllByDateNaissanceAfter(dateNaissance);
-        return  piloteList;
+        return pilote_repository.findByDateNaissanceAfter(dateNaissance);
     }
 }

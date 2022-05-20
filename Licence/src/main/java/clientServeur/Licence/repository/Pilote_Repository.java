@@ -18,6 +18,5 @@ public interface Pilote_Repository extends MongoRepository<Pilote, ObjectId> {
     @Query("{nationalite:'?0'}")
     List<Pilote> findByNationalite(String nationalite);
 
-    @Query("{")
-    List<Pilote> findAllByDateNaissanceAfter(Date dateNaissance);
+    List<Pilote> findByDateNaissanceAfter(Date dateNaissance);
 }
