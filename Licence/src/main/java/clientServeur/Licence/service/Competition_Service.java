@@ -16,16 +16,17 @@ public class Competition_Service {
     @Autowired
     private Competition_Repository competition_repository;
 
-    public Competition findById(ObjectId id){
-        Optional<Competition> optionalCompetition;
-        optionalCompetition = competition_repository.findById(id);
-        return optionalCompetition.get();
-    }
 
     public List<Competition> findAll(){
         List<Competition> competitionList;
         competitionList = competition_repository.findAll();
         return competitionList;
+    }
+
+    public Competition findById(ObjectId id){
+        Optional<Competition> optionalCompetition;
+        optionalCompetition = competition_repository.findById(id);
+        return optionalCompetition.get();
     }
 
     public List<Competition> findAllByName(String name){
@@ -40,8 +41,15 @@ public class Competition_Service {
         return competitionList;
     }
 
+    /*public void create(String nom, Integer annee, List<Pilote> podium){
+        if(nom != null || !nom.isEmpty()){
+            competition_repository.save(new Competition(nom, annee, podium));
+        }else{
+            competition_repository.save(new Competition("a", 2022, null));
+        }
+    }*/
+
     public void create(){
-        Competition competition = new Competition("a", 2022, null);
-        competition_repository.save(competition);
+        competition_repository.save(new Competition("a", 2022, null));
     }
 }

@@ -18,6 +18,20 @@ public class Competition_Controller {
     @Autowired
     private Competition_Service competition_service;
 
+    @GetMapping("/")
+    public List<Competition_Dto> findAll(){
+        try{
+            ArrayList<Competition_Dto> competition_dtoArrayList = new ArrayList<>();
+            for (Competition competition : competition_service.findAll()){
+                competition_dtoArrayList.add(new Competition_Dto(competition));
+            }
+            return competition_dtoArrayList;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @GetMapping("/{id}")
     public Competition_Dto findById(@PathVariable String id){
         try{
@@ -42,19 +56,24 @@ public class Competition_Controller {
         return null;
     }
 
-    @GetMapping("/")
-    public List<Competition_Dto> findAll(){
+    @GetMapping("/annee/{annee}")
+    public List<Competition_Dto> findByAnnee(@PathVariable Integer annee){
         try{
-            ArrayList<Competition_Dto> competition_dtoArrayList = new ArrayList<>();
-            for (Competition competition : competition_service.findAll()){
+            List<Competition_Dto> competition_dtoArrayList = new ArrayList<>();
+            for (Competition competition : competition_service.findByAnnee(annee)){
                 competition_dtoArrayList.add(new Competition_Dto(competition));
             }
             return competition_dtoArrayList;
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
         return null;
     }
+
+    /*@PostMapping("/create/{nom}/{annee}/{podium}")
+    public void createCompetition(@PathVariable String nom, @PathVariable Integer annee){
+        competition_service.create(nom, annee, null);
+    }*/
 
     @PostMapping("/")
     public void createCompetition(){

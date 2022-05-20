@@ -21,18 +21,6 @@ public class Pilote_Controller {
     @Autowired
     private Pilote_Service pilote_service;
 
-    @GetMapping("/{id}")
-    public Pilote_Dto findByID(@PathVariable String id){
-        try{
-            return new Pilote_Dto(pilote_service.findById(new ObjectId(id)));
-        }catch (ItemNotFoundException | IllegalArgumentException e){
-            throw new ItemNotFoundException();
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new InternalErrorException();
-        }
-    }
-
     @GetMapping("/")
     public List<Pilote_Dto> findAll(){
         try{
@@ -41,6 +29,18 @@ public class Pilote_Controller {
                 pilote_dtoArrayList.add(new Pilote_Dto(pilote));
             }
             return pilote_dtoArrayList;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new InternalErrorException();
+        }
+    }
+
+    @GetMapping("/{id}")
+    public Pilote_Dto findByID(@PathVariable String id){
+        try{
+            return new Pilote_Dto(pilote_service.findById(new ObjectId(id)));
+        }catch (ItemNotFoundException | IllegalArgumentException e){
+            throw new ItemNotFoundException();
         }catch (Exception e){
             e.printStackTrace();
             throw new InternalErrorException();
@@ -61,10 +61,12 @@ public class Pilote_Controller {
         }
     }
 
-    @GetMapping("/naissance")
-    public List<Pilote_Dto> findAllByDateNaissance(@RequestParam int years,@RequestParam int month,@RequestParam int day){
+    @GetMapping("/naissance/{annee}")
+    public List<Pilote_Dto> findAllByDateNaissance(@RequestParam int annee){
         try{
-            Date dateNaissance = new Date(years-1900,month,day);
+            int mois = 05;
+            int jour = 12;
+            Date dateNaissance = new Date(annee-1900,mois,jour);
             ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
 
             for (Pilote pilote : pilote_service.findAllByAfterDateNaissance(dateNaissance)){
@@ -79,6 +81,16 @@ public class Pilote_Controller {
 
 
 
+    /*@PostMapping("/create/{nom}/{annee}/{mois}/{jour}/{nationalite}")
+    public void createPilote(@RequestParam String nom, @RequestParam int annee,@RequestParam int mois,@RequestParam int jour, @RequestParam String nationalite){
+        try{
+            Date dateNaissance = new Date(annee-1900,mois,jour);
+            pilote_service.create(nom, dateNaissance, nationalite);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new InternalErrorException();
+        }
+    }*/
     @PostMapping("/")
     public void createPilote(){
         try{
