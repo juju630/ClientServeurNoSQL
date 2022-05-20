@@ -1,12 +1,14 @@
 package clientServeur.Licence.controller;
 
 
+import clientServeur.Licence.dto.Pilote_Dto;
 import clientServeur.Licence.model.Pilote;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import clientServeur.Licence.service.Pilote_Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +20,9 @@ public class Pilote_Controller {
     private Pilote_Service pilote_service;
 
     @GetMapping("/{id}")
-    public Pilote findByID(@PathVariable ObjectId id){
+    public Pilote_Dto findByID(@PathVariable ObjectId id){
         try{
-            return pilote_service.findById(id);
+            return new Pilote_Dto(pilote_service.findById(id));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -28,10 +30,13 @@ public class Pilote_Controller {
     }
 
     @GetMapping("/")
-    public List<Pilote> findAll(){
+    public List<Pilote_Dto> findAll(){
         try{
-            return pilote_service.findAll().stream().map(pilote -> {pilote.setId(null); return pilote;}).collect(Collectors.toList());
-
+            ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
+            for (Pilote pilote : pilote_service.findAll()) {
+                pilote_dtoArrayList.add(new Pilote_Dto(pilote));
+            }
+            return pilote_dtoArrayList;
         }catch (Exception e){
             e.printStackTrace();
         }
