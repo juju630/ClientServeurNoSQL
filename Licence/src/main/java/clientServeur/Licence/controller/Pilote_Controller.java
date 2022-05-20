@@ -2,6 +2,8 @@ package clientServeur.Licence.controller;
 
 
 import clientServeur.Licence.dto.Pilote_Dto;
+import clientServeur.Licence.exception.InternalErrorException;
+import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,12 @@ public class Pilote_Controller {
     public Pilote_Dto findByID(@PathVariable String id){
         try{
             return new Pilote_Dto(pilote_service.findById(new ObjectId(id)));
+        }catch (ItemNotFoundException | IllegalArgumentException e){
+            throw new ItemNotFoundException();
         }catch (Exception e){
             e.printStackTrace();
+            throw new InternalErrorException();
         }
-        return null;
     }
 
     @GetMapping("/")
@@ -39,8 +43,8 @@ public class Pilote_Controller {
             return pilote_dtoArrayList;
         }catch (Exception e){
             e.printStackTrace();
+            throw new InternalErrorException();
         }
-        return null;
     }
 
     @GetMapping("/nation/{nationalite}")
@@ -53,8 +57,8 @@ public class Pilote_Controller {
             return  pilote_dtoArrayList;
         }catch (Exception e){
             e.printStackTrace();
+            throw new InternalErrorException();
         }
-        return null;
     }
 
     @GetMapping("/naissance")
@@ -69,15 +73,19 @@ public class Pilote_Controller {
             return  pilote_dtoArrayList;
         }catch (Exception e){
             e.printStackTrace();
+            throw new InternalErrorException();
         }
-        return null;
     }
 
 
 
     @PostMapping("/")
     public void createPilote(){
-        pilote_service.create();
+        try{
+            pilote_service.create();
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new InternalErrorException();
+        }
     }
-
 }
