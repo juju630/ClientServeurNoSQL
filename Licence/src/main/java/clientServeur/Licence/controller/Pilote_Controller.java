@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import clientServeur.Licence.service.Pilote_Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,20 @@ public class Pilote_Controller {
         try{
             ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
             for (Pilote pilote : pilote_service.findAllByNationalite(nationalite)){
+                pilote_dtoArrayList.add(new Pilote_Dto(pilote));
+            }
+            return  pilote_dtoArrayList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @GetMapping("/naissance/{dateNaissance}")
+    public List<Pilote_Dto> findAllByDateNaissance(@PathVariable Date dateNaissance){
+        try{
+            ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
+            for (Pilote pilote : pilote_service.findAllByAfterDateNaissance(dateNaissance)){
                 pilote_dtoArrayList.add(new Pilote_Dto(pilote));
             }
             return  pilote_dtoArrayList;
