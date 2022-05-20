@@ -24,6 +24,10 @@ public class Competition_Dto {
         id = competition.getId().toHexString();
         name = competition.getName();
         annee = competition.getAnnee();
-        podium = competition.getPodium().stream().map(Pilote_Dto::new).collect(Collectors.toList());
+        if (competition.getPodium() != null){
+            podium = competition.getPodium().stream().map(Pilote_Dto::new).collect(Collectors.toList());
+        } else {
+            podium = null;
+        }
     }
 }

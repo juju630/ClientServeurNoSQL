@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Accessors
@@ -24,9 +25,9 @@ public class Competition {
     @Field(value = "annee")
     private Integer annee;
     @Field(value = "podium")
-    private ArrayList<Pilote> podium;
+    private List<Pilote> podium;
 
-    public Competition(String name, Integer annee, ArrayList<Pilote> podium) {
+    public Competition(String name, Integer annee, List<Pilote> podium) {
         this.name = name;
         this.annee = annee;
         this.podium = podium;
