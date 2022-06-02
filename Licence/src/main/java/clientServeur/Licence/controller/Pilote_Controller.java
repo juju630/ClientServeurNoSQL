@@ -5,11 +5,14 @@ import clientServeur.Licence.dto.Pilote_Dto;
 import clientServeur.Licence.exception.InternalErrorException;
 import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import clientServeur.Licence.service.Pilote_Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,12 +64,12 @@ public class Pilote_Controller {
         }
     }
 
-    @GetMapping("/naissance/{annee}")
-    public List<Pilote_Dto> findAllByDateNaissance(@RequestParam int annee){
+    @GetMapping("/naissance/{jour}/{mois}/{annee}")
+    public List<Pilote_Dto> findAllByDateNaissance(@PathVariable int jour, @PathVariable int mois, @PathVariable int annee){
         try{
-            int mois = 05;
-            int jour = 12;
-            Date dateNaissance = new Date(annee-1900,mois,jour);
+            String date_string = jour+"-"+mois+"-"+annee;
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            Date dateNaissance = formatter.parse(date_string);
             ArrayList<Pilote_Dto> pilote_dtoArrayList = new ArrayList<>();
 
             for (Pilote pilote : pilote_service.findAllByAfterDateNaissance(dateNaissance)){
@@ -80,24 +83,22 @@ public class Pilote_Controller {
     }
 
 
+    @PostMapping("/create/{nom}/{jour}/{mois}/{annee}/{nationalite}")
+    public void createPilote(@PathVariable String nom, @PathVariable int jour,@PathVariable int mois,@PathVariable int annee, @PathVariable String nationalite) throws ParseException {
+        String date_string = jour+"-"+mois+"-"+annee;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateNaissance = formatter.parse(date_string);
+        System.out.println(dateNaissance);
+        pilote_service.create(nom, dateNaissance, nationalite);
+    }
 
-    /*@PostMapping("/create/{nom}/{annee}/{mois}/{jour}/{nationalite}")
-    public void createPilote(@RequestParam String nom, @RequestParam int annee,@RequestParam int mois,@RequestParam int jour, @RequestParam String nationalite){
-        try{
-            Date dateNaissance = new Date(annee-1900,mois,jour);
-            pilote_service.create(nom, dateNaissance, nationalite);
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new InternalErrorException();
-        }
-    }*/
-    @PostMapping("/")
-    public void createPilote(){
-        try{
-            pilote_service.create();
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new InternalErrorException();
-        }
+    @DeleteMapping("/delete/{id}")
+    public void deletePilote(@PathVariable ObjectId id){
+        pilote_service.delete(pilote_service.findById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public void updatePilote(@PathVariable ObjectId id, @RequestBody Pilote pilote){
+        pilote_service.update(id, pilote);
     }
 }

@@ -3,6 +3,8 @@ package clientServeur.Licence.controller;
 
 import clientServeur.Licence.dto.Competition_Dto;
 import clientServeur.Licence.model.Competition;
+import clientServeur.Licence.model.Pilote;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -70,13 +72,23 @@ public class Competition_Controller {
         return null;
     }
 
-    /*@PostMapping("/create/{nom}/{annee}/{podium}")
+    @PostMapping("/create/{nom}/{annee}")
     public void createCompetition(@PathVariable String nom, @PathVariable Integer annee){
         competition_service.create(nom, annee, null);
-    }*/
+    }
 
-    @PostMapping("/")
-    public void createCompetition(){
-        competition_service.create();
+    @DeleteMapping("/delete/{id}")
+    public void deletePilote(@PathVariable ObjectId id){
+        competition_service.delete(competition_service.findById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public void updatePilote(@PathVariable ObjectId id, @RequestBody Competition competition){
+        competition_service.update(id, competition);
+    }
+
+    @PutMapping("/setPodium/{id}")
+    public void addPilote(@PathVariable ObjectId id, @RequestBody List<Pilote> pilotes){
+        competition_service.setPoduim(id, pilotes.get(0), pilotes.get(1), pilotes.get(2));
     }
 }

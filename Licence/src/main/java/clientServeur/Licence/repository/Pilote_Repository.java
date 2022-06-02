@@ -22,4 +22,5 @@ public interface Pilote_Repository extends MongoRepository<Pilote, ObjectId> {
     List<Pilote> findByName(String name);
 
     List<Pilote> findByDateNaissanceAfter(Date dateNaissance);
+
 }

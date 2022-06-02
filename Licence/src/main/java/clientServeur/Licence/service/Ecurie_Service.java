@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,9 @@ public class Ecurie_Service {
 
     @Autowired
     private Ecurie_Repository ecurie_Repository;
+
+    @Autowired
+    private Pilote_Repository pilote_Repository;
 
     public Ecurie findById(ObjectId id){
         Optional<Ecurie> optionalEcurie;
@@ -52,15 +56,45 @@ public class Ecurie_Service {
         return ecurieList;
     }
 
-    /*public void create(String nom, String lieu, String nationalite, List<Pilote> pilotes){
+    public void create(String nom, String lieu, String nationalite, List<Pilote> pilotes){
         if(nom != null || !nom.isEmpty()){
+            if(pilotes == null){
+                pilotes = new ArrayList<Pilote>();
+            }
             ecurie_Repository.save(new Ecurie(nom, lieu, nationalite, pilotes));
         }else{
             Ecurie ecurie =
             ecurie_Repository.save(new Ecurie("ecurie1", "lieu1", "nationalite1", null));
         }
-    }*/
-    public void create(){
-        ecurie_Repository.save(new Ecurie("ecurie1", "lieu1", "nationalite1", null));
     }
+
+    public void delete(Ecurie ecurie){
+        ecurie_Repository.delete(ecurie);
+    }
+
+    public void update(ObjectId id, Ecurie newEcurie){
+        ecurie_Repository.findById(id)
+                .map(ecurie -> {
+                    ecurie.setName(newEcurie.getName());
+                    ecurie.setLieu(newEcurie.getLieu());
+                    ecurie.setNationalite(newEcurie.getNationalite());
+                    if(newEcurie.getPilotes() != null){
+                        ecurie.setPilotes(newEcurie.getPilotes());
+                    }
+                    return ecurie_Repository.save(ecurie);
+                })
+                .orElseGet(() -> {
+                    newEcurie.setId(id);
+                    return ecurie_Repository.save(newEcurie);
+                });
+    }
+
+    public void addPilote(ObjectId id, ObjectId idPilote){
+        ecurie_Repository.findById(id)
+                .map(ecurie -> {
+                    ecurie.getPilotes().add(pilote_Repository.findById(idPilote).get());
+                    return ecurie_Repository.save(ecurie);
+                });
+    }
+
 }

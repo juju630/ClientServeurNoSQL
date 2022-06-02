@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import clientServeur.Licence.repository.Pilote_Repository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,15 +43,29 @@ public class Pilote_Service {
         return pilote_repository.findByDateNaissanceAfter(dateNaissance);
     }
 
-    /*public void create(String nom, Date dateNaissance, String nationalite) {
+    public void create(String nom, Date dateNaissance, String nationalite) {
         if(nom != null || !nom.isEmpty()){
             pilote_repository.save(new Pilote(nom,dateNaissance,nationalite));
         }else{
             pilote_repository.save(new Pilote("Defaut",new Date(),"Français"));
         }
-    }*/
+    }
 
-    public void create() {
-        pilote_repository.save(new Pilote("Defaut",new Date(),"Français"));
+    public void delete(Pilote pilote){
+        pilote_repository.delete(pilote);
+    }
+
+    public void update(ObjectId id, Pilote newPilote){
+        pilote_repository.findById(id)
+                .map(pilote -> {
+                    pilote.setName(newPilote.getName());
+                    pilote.setNationalite(newPilote.getNationalite());
+                    pilote.setDateNaissance(newPilote.getDateNaissance());
+                    return pilote_repository.save(pilote);
+                })
+                .orElseGet(() -> {
+                    newPilote.setId(id);
+                    return pilote_repository.save(newPilote);
+                });
     }
 }

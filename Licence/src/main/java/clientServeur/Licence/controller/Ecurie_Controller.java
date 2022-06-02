@@ -4,8 +4,10 @@ import clientServeur.Licence.dto.Competition_Dto;
 import clientServeur.Licence.dto.Ecurie_Dto;
 import clientServeur.Licence.model.Competition;
 import clientServeur.Licence.model.Ecurie;
+import clientServeur.Licence.model.Pilote;
 import clientServeur.Licence.service.Competition_Service;
 import clientServeur.Licence.service.Ecurie_Service;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -82,13 +84,23 @@ public class Ecurie_Controller {
         return null;
     }
 
-    /*@PostMapping("/create/{nom}/{lieu}/{nationalite}")
+    @PostMapping("/create/{nom}/{lieu}/{nationalite}")
     public void createCompetition(@PathVariable String nom,@PathVariable String lieu, @PathVariable String nationalite){
         ecurie_service.create(nom, lieu, nationalite, null);
-    }*/
+    }
 
-    @PostMapping("/")
-    public void createCompetition(){
-        ecurie_service.create();
+    @DeleteMapping("/delete/{id}")
+    public void deletePilote(@PathVariable ObjectId id){
+        ecurie_service.delete(ecurie_service.findById(id));
+    }
+
+    @PutMapping("/update/{id}")
+    public void updatePilote(@PathVariable ObjectId id, @RequestBody Ecurie ecurie){
+        ecurie_service.update(id, ecurie);
+    }
+
+    @PutMapping("/addPilote/{id}/{idPilote}")
+    public void addPilote(@PathVariable ObjectId id, @PathVariable ObjectId idPilote){
+        ecurie_service.addPilote(id, idPilote);
     }
 }
