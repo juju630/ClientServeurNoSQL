@@ -30,7 +30,7 @@ classDiagram
       
       class Ecurie{
              -String name
-             -String Lieu
+             -String lieu
              -String nationalite
              -List:Pilote pilotes
       }
