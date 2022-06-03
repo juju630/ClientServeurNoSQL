@@ -10,29 +10,28 @@ On souhaite donc stocker les résultats pour accéder aux podiums d'une course r
 
 ## Fonctionnement 
 
-Grâce à une base de donnée mongo, nous pouvons lister les différents éléments avec des API REST classiques.
-
+Afin de réaliser ce travail, nous avons utilisé une base de données mongo pour stocker toutes nos données. Et pour récuprérer ces données, nous avons fais des API REST classiques, accessibles via 'PostmanCollection.json' à la racine du projet.
 
 ## Model
 
 ```mermaid
 classDiagram
       class Pilote{
-      +String name
-      +Date dateNaissance
-      +String nationalite
+            -String name
+            -Date dateNaissance
+            -String nationalite
       }
       
       class Competition{
-          +String name
-          +Integer annee
-          +List:Pilote podium
+            -String name
+            -Integer annee
+            -List:Pilote podium
       }
       
       class Ecurie{
-        +String name
-        +String Lieu
-        +String nationalite
-        +List:Pilote pilotes
+             -String name
+             -String Lieu
+             -String nationalite
+             -List:Pilote pilotes
       }
 ```
