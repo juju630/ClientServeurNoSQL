@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 # ClientServeurNoSQL
 
 ## Présentation
@@ -35,3 +37,11 @@ classDiagram
              -List:Pilote pilotes
       }
 ```
+
+## CONTACT
+
+1. Bauzil Tristan : tristan.bauzil@etu.uca.fr
+2. Beaudoux Julien : julien.beaudoux@etu.uca.fr
+3. Peyron Hugo : hugo.peyron@etu.uca.fr
+
+<p align="right">(<a href="#top">back to top</a>)</p>
