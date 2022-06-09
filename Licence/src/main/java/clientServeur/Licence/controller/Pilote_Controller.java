@@ -64,8 +64,8 @@ public class Pilote_Controller {
         }
     }
 
-    @GetMapping("/naissance/{jour}/{mois}/{annee}")
-    public List<Pilote_Dto> findAllByDateNaissance(@PathVariable int jour, @PathVariable int mois, @PathVariable int annee){
+    @GetMapping("/naissance")
+    public List<Pilote_Dto> findAllByDateNaissance(@RequestParam("day") Integer jour, @RequestParam("month")  Integer mois, @RequestParam("years")  Integer annee){
         try{
             String date_string = jour+"-"+mois+"-"+annee;
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -83,22 +83,18 @@ public class Pilote_Controller {
     }
 
 
-    @PostMapping("/create/{nom}/{jour}/{mois}/{annee}/{nationalite}")
-    public void createPilote(@PathVariable String nom, @PathVariable int jour,@PathVariable int mois,@PathVariable int annee, @PathVariable String nationalite) throws ParseException {
-        String date_string = jour+"-"+mois+"-"+annee;
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Date dateNaissance = formatter.parse(date_string);
-        System.out.println(dateNaissance);
-        pilote_service.create(nom, dateNaissance, nationalite);
+    @PostMapping
+    public void createPilote(@RequestBody Pilote_Dto pilote_dto) throws ParseException {
+        pilote_service.create(new Pilote(pilote_dto));
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deletePilote(@PathVariable ObjectId id){
         pilote_service.delete(pilote_service.findById(id));
     }
 
-    @PutMapping("/update/{id}")
-    public void updatePilote(@PathVariable ObjectId id, @RequestBody Pilote pilote){
-        pilote_service.update(id, pilote);
+    @PutMapping("/{id}")
+    public void updatePilote(@PathVariable ObjectId id, @RequestBody Pilote_Dto pilote){
+        pilote_service.update(id,new Pilote(pilote));
     }
 }

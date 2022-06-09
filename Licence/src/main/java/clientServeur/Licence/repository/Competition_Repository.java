@@ -9,14 +9,14 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface Competition_Repository extends MongoRepository<Competition,Long> {
+public interface Competition_Repository extends MongoRepository<Competition,ObjectId> {
     @Query("{_id:'?0'}")
     public Optional<Competition> findById(ObjectId id);
 
     List<Competition> findByName(String name);
 
-    @Query("{annee:'?0'}")
     List<Competition> findByAnnee(Integer annee);
 
 
 }
+

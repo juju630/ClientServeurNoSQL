@@ -56,15 +56,16 @@ public class Ecurie_Service {
         return ecurieList;
     }
 
-    public void create(String nom, String lieu, String nationalite, List<Pilote> pilotes){
-        if(nom != null || !nom.isEmpty()){
+    public void create(Ecurie ecurie, List<Pilote> pilotes){
+        if(ecurie.getName() != null || !ecurie.getName().isEmpty()){
             if(pilotes == null){
                 pilotes = new ArrayList<Pilote>();
             }
-            ecurie_Repository.save(new Ecurie(nom, lieu, nationalite, pilotes));
+            ecurie.setPilotes(pilotes);
+            ecurie_Repository.save(ecurie);
         }else{
-            Ecurie ecurie =
-            ecurie_Repository.save(new Ecurie("ecurie1", "lieu1", "nationalite1", null));
+            Ecurie ecurieDefault =
+                    ecurie_Repository.save(new Ecurie("ecurie1", "lieu1", "nationalite1", null));
         }
     }
 

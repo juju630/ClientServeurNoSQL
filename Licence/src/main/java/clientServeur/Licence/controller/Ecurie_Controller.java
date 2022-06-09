@@ -84,19 +84,19 @@ public class Ecurie_Controller {
         return null;
     }
 
-    @PostMapping("/create/{nom}/{lieu}/{nationalite}")
-    public void createCompetition(@PathVariable String nom,@PathVariable String lieu, @PathVariable String nationalite){
-        ecurie_service.create(nom, lieu, nationalite, null);
+    @PostMapping
+    public void createCompetition(@RequestBody Ecurie_Dto ecurie){
+        ecurie_service.create(new Ecurie(ecurie),null);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deletePilote(@PathVariable ObjectId id){
         ecurie_service.delete(ecurie_service.findById(id));
     }
 
-    @PutMapping("/update/{id}")
-    public void updatePilote(@PathVariable ObjectId id, @RequestBody Ecurie ecurie){
-        ecurie_service.update(id, ecurie);
+    @PutMapping("/{id}")
+    public void updatePilote(@PathVariable ObjectId id, @RequestBody Ecurie_Dto ecurie){
+        ecurie_service.update(id,new Ecurie(ecurie));
     }
 
     @PutMapping("/addPilote/{id}/{idPilote}")

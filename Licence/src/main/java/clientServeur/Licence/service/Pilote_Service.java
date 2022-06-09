@@ -43,9 +43,9 @@ public class Pilote_Service {
         return pilote_repository.findByDateNaissanceAfter(dateNaissance);
     }
 
-    public void create(String nom, Date dateNaissance, String nationalite) {
-        if(nom != null || !nom.isEmpty()){
-            pilote_repository.save(new Pilote(nom,dateNaissance,nationalite));
+    public void create(Pilote pilote) {
+        if(pilote.getName() != null || !pilote.getName().isEmpty()){
+            pilote_repository.save(pilote);
         }else{
             pilote_repository.save(new Pilote("Defaut",new Date(),"Français"));
         }

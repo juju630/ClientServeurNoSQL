@@ -15,7 +15,6 @@ public interface Ecurie_Repository extends MongoRepository<Ecurie, ObjectId> {
     @Query("{_id:'?0'}")
     Optional<Ecurie> findById(ObjectId id);
 
-    @Query("{nationalite:'?0'}")
     List<Ecurie> findByNationalite(String nationalite);
 
     Ecurie findByName(String name);

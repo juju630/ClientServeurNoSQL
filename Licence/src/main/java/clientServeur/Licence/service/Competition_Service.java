@@ -1,8 +1,12 @@
 package clientServeur.Licence.service;
 
+import clientServeur.Licence.dto.Competition_Dto;
+import clientServeur.Licence.dto.Pilote_Dto;
 import clientServeur.Licence.model.Competition;
 import clientServeur.Licence.model.Pilote;
+import clientServeur.Licence.model.Podium;
 import clientServeur.Licence.repository.Competition_Repository;
+import clientServeur.Licence.repository.Pilote_Repository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,12 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class Competition_Service {
 
     @Autowired
     private Competition_Repository competition_repository;
+    @Autowired
+    private Pilote_Repository pilote_repository;
 
 
     public List<Competition> findAll(){
@@ -42,12 +49,10 @@ public class Competition_Service {
         return competitionList;
     }
 
-    public void create(String nom, Integer annee, List<Pilote> podium){
-        if(nom != null || !nom.isEmpty()){
-            if(podium == null){
-                podium = new ArrayList<Pilote>();
-            }
-            competition_repository.save(new Competition(nom, annee, podium));
+    public void create(Competition_Dto competition_dto){
+        if(competition_dto.getNom() != null || !competition_dto.getNom().isEmpty()){
+            competition_dto.setPodium(new Podium());
+            competition_repository.save(new Competition(competition_dto));
         }else{
             competition_repository.save(new Competition("a", 2022, null));
         }
@@ -73,13 +78,10 @@ public class Competition_Service {
                 });
     }
 
-    public void setPoduim(ObjectId id, Pilote pilote1, Pilote pilote2, Pilote pilote3){
+    public void setPoduim(ObjectId id, ObjectId pilote1, ObjectId pilote2, ObjectId pilote3){
         competition_repository.findById(id)
                 .map(competition -> {
-                    competition.getPodium().clear();
-                    competition.getPodium().add(pilote1);
-                    competition.getPodium().add(pilote2);
-                    competition.getPodium().add(pilote3);
+                    competition.setPodium(new Podium(pilote_repository.findById(pilote1).get().getName(), pilote_repository.findById(pilote2).get().getName(), pilote_repository.findById(pilote3).get().getName()));
                     return competition_repository.save(competition);
                 });
     }

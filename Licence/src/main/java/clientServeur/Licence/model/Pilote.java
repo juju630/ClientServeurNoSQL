@@ -1,5 +1,6 @@
 package clientServeur.Licence.model;
 
+import clientServeur.Licence.dto.Pilote_Dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
@@ -33,5 +34,10 @@ public class Pilote {
     }
 
     public Pilote() {
+    }
+    public Pilote(Pilote_Dto pilote_dto){
+        this.name = pilote_dto.getNom();
+        this.dateNaissance = pilote_dto.getDateNaissance();
+        this.nationalite = pilote_dto.getNationalite();
     }
 }

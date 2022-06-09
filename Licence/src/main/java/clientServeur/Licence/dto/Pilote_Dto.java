@@ -13,13 +13,13 @@ import java.util.Date;
 public class Pilote_Dto {
 
     private String id;
-    private String name;
+    private String nom;
     private Date dateNaissance;
     private String nationalite;
 
     public Pilote_Dto(Pilote pilote) {
         id = pilote.getId().toHexString();
-        name = pilote.getName();
+        nom = pilote.getName();
         dateNaissance = pilote.getDateNaissance();
         nationalite = pilote.getNationalite();
     }

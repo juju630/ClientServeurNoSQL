@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 public class Ecurie_Dto {
 
     private String id;
-    private String name;
+    private String nom;
     private String lieu;
     private String nationalite;
     private List<Pilote_Dto> pilotes;
 
     public Ecurie_Dto(Ecurie ecurie) {
         id = ecurie.getId().toHexString();
-        name = ecurie.getName();
+        nom = ecurie.getName();
         lieu = ecurie.getLieu();
         nationalite = ecurie.getNationalite();
         if (ecurie.getPilotes() != null){

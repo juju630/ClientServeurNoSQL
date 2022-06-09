@@ -72,23 +72,31 @@ public class Competition_Controller {
         return null;
     }
 
-    @PostMapping("/create/{nom}/{annee}")
-    public void createCompetition(@PathVariable String nom, @PathVariable Integer annee){
-        competition_service.create(nom, annee, null);
+    @PostMapping
+    public void createCompetition(@RequestBody Competition_Dto competition_dto){
+        competition_service.create(competition_dto);
+        /*
+        pour créer une compétition avec le sous document podium :
+        {
+            "nom": "Competition test",
+            "annee": 2022,
+            "podium": {}
+        }
+         */
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deletePilote(@PathVariable ObjectId id){
         competition_service.delete(competition_service.findById(id));
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public void updatePilote(@PathVariable ObjectId id, @RequestBody Competition competition){
         competition_service.update(id, competition);
     }
 
     @PutMapping("/setPodium/{id}")
-    public void addPilote(@PathVariable ObjectId id, @RequestBody List<Pilote> pilotes){
+    public void addPilote(@PathVariable ObjectId id, @RequestBody List<ObjectId> pilotes){
         competition_service.setPoduim(id, pilotes.get(0), pilotes.get(1), pilotes.get(2));
     }
 }
