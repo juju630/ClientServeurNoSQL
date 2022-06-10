@@ -2,6 +2,7 @@ package clientServeur.Licence.service;
 
 import clientServeur.Licence.dto.Competition_Dto;
 import clientServeur.Licence.dto.Pilote_Dto;
+import clientServeur.Licence.dto.Podium_Dto;
 import clientServeur.Licence.model.Competition;
 import clientServeur.Licence.model.Pilote;
 import clientServeur.Licence.model.Podium;
@@ -51,7 +52,7 @@ public class Competition_Service {
 
     public void create(Competition_Dto competition_dto){
         if(competition_dto.getNom() != null || !competition_dto.getNom().isEmpty()){
-            competition_dto.setPodium(new Podium());
+            competition_dto.setPodium(new Podium_Dto());
             competition_repository.save(new Competition(competition_dto));
         }else{
             competition_repository.save(new Competition("a", 2022, null));

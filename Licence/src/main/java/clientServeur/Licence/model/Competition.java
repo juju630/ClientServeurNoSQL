@@ -41,7 +41,7 @@ public class Competition {
     public Competition(Competition_Dto competition_dto) {
         this.name = competition_dto.getNom();
         this.annee = competition_dto.getAnnee();
-        this.podium = competition_dto.getPodium();
+        this.podium = new Podium(competition_dto.getPodium());
     }
 }
 
