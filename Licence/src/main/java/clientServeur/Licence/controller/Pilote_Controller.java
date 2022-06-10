@@ -2,9 +2,11 @@ package clientServeur.Licence.controller;
 
 
 import clientServeur.Licence.dto.Pilote_Dto;
+import clientServeur.Licence.dto.QueryAggregation.Pilote_Count_Nationalite_Dto;
 import clientServeur.Licence.exception.InternalErrorException;
 import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
+import clientServeur.Licence.model.QueryAggregation.Pilote_Count_Nationalite;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pilote")
@@ -105,6 +108,11 @@ public class Pilote_Controller {
             e.printStackTrace();
             throw new InternalErrorException();
         }
+    }
+
+        @GetMapping("/nationalite/Sum/{nationalite}")
+    public List<Pilote_Count_Nationalite_Dto> getNumberOfPiloteWithNationalite(@PathVariable String nationalite){
+        return pilote_service.getNumberOfPiloteWithNationalite(nationalite).stream().map(Pilote_Count_Nationalite_Dto::new).collect(Collectors.toList());
     }
 
 

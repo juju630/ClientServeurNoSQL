@@ -2,6 +2,7 @@ package clientServeur.Licence.service;
 
 import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
+import clientServeur.Licence.model.QueryAggregation.Pilote_Count_Nationalite;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,10 @@ public class Pilote_Service {
         return pilote_repository.findByDateNaissanceAfter(dateNaissance);
     }
 
+    public List<Pilote_Count_Nationalite> getNumberOfPiloteWithNationalite(String nationalite) {
+        return pilote_repository.getNumberOfPiloteWithNationalite(nationalite);
+    }
+
     public void create(Pilote pilote) {
         if(pilote.getName() != null || !pilote.getName().isEmpty()){
             pilote_repository.save(pilote);
@@ -68,4 +73,6 @@ public class Pilote_Service {
                     return pilote_repository.save(newPilote);
                 });
     }
+
+
 }
