@@ -81,7 +81,7 @@ public class Competition_Service {
     public void setPoduim(ObjectId id, ObjectId pilote1, ObjectId pilote2, ObjectId pilote3){
         competition_repository.findById(id)
                 .map(competition -> {
-                    competition.setPodium(new Podium(pilote_repository.findById(pilote1).get().getName(), pilote_repository.findById(pilote2).get().getName(), pilote_repository.findById(pilote3).get().getName()));
+                    competition.setPodium(new Podium(pilote_repository.findById(pilote1).get(), pilote_repository.findById(pilote2).get(), pilote_repository.findById(pilote3).get()));
                     return competition_repository.save(competition);
                 });
     }
