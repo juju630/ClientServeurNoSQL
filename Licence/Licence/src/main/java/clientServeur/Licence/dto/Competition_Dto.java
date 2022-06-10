@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class Competition_Dto {
 
     private String id;
-    private String name;
+    private String nom;
     private Integer annee;
     private List<Pilote_Dto> podium;
 
     public Competition_Dto(Competition competition) {
         id = competition.getId().toHexString();
-        name = competition.getName();
+        nom = competition.getName();
         annee = competition.getAnnee();
         if (competition.getPodium() != null){
             podium = competition.getPodium().stream().map(Pilote_Dto::new).collect(Collectors.toList());

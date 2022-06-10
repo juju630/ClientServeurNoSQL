@@ -1,5 +1,6 @@
 package clientServeur.Licence.repository;
 
+import clientServeur.Licence.model.Competition;
 import clientServeur.Licence.model.Pilote;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -18,5 +19,8 @@ public interface Pilote_Repository extends MongoRepository<Pilote, ObjectId> {
     @Query("{nationalite:'?0'}")
     List<Pilote> findByNationalite(String nationalite);
 
+    List<Pilote> findByName(String name);
+
     List<Pilote> findByDateNaissanceAfter(Date dateNaissance);
+
 }
