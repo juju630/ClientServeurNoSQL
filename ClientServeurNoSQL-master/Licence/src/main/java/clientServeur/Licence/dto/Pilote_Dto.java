@@ -19,7 +19,7 @@ public class Pilote_Dto {
 
     public Pilote_Dto(Pilote pilote) {
         id = pilote.getId().toHexString();
-        nom = pilote.getNom();
+        nom = pilote.getName();
         dateNaissance = pilote.getDateNaissance();
         nationalite = pilote.getNationalite();
     }
