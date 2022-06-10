@@ -20,6 +20,11 @@ public class Competition_Controller {
     @Autowired
     private Competition_Service competition_service;
 
+    /**
+     * @HTTP_Verb GET
+     * @Example local : http://localhost:8080/competition/
+     * @return Retourne la list complète de toutes les compétitions
+     */
     @GetMapping("/")
     public List<Competition_Dto> findAll(){
         try{
@@ -34,6 +39,12 @@ public class Competition_Controller {
         return null;
     }
 
+    /**
+     * @HTTP_Verb GET
+     * @Example Local : http://localhost:8080/competition/629859a76dee6a05ce365a10
+     * @param id : ID de la competition recherchée
+     * @return retourne la competition recherchée
+     */
     @GetMapping("/{id}")
     public Competition_Dto findById(@PathVariable String id){
         try{
@@ -44,6 +55,12 @@ public class Competition_Controller {
         return null;
     }
 
+    /**
+     * @HTTP_Verb GET
+     * @Example Local : http://localhost:8080/competition/nom/LeMans
+     * @param name : Nom de la competition recherchée
+     * @return Retourne la liste des compétitions recherchées avec le même nom.
+     */
     @GetMapping("/nom/{name}")
     public List<Competition_Dto> findAllByName(@PathVariable String name){
         try{
@@ -58,6 +75,12 @@ public class Competition_Controller {
         return null;
     }
 
+    /**
+     * @HTTP_Verb GET
+     * @Example Local : http://localhost:8080/competition/annee/2021
+     * @param annee : Annee de recherche pour les competitions
+     * @return Retourne la liste des competitions qui on eu lieu pendant l'année donnée.
+     */
     @GetMapping("/annee/{annee}")
     public List<Competition_Dto> findByAnnee(@PathVariable Integer annee){
         try{
@@ -72,6 +95,11 @@ public class Competition_Controller {
         return null;
     }
 
+    /**
+     * @HTTP_Verb POST
+     * @Example Local : http://localhost:8080/competition/
+     * @param competition_dto : Objet competition DTO passé dans les paramètres du Body
+     */
     @PostMapping
     public void createCompetition(@RequestBody Competition_Dto competition_dto){
         competition_service.create(competition_dto);
@@ -85,16 +113,31 @@ public class Competition_Controller {
          */
     }
 
+    /**
+     * @HTTP_Verb POST
+     * @Example Local : http://localhost:8080/competition/62986c830c858276ddfcead5
+     * @param id : ID de la competition recherchée
+     */
     @DeleteMapping("/{id}")
     public void deletePilote(@PathVariable ObjectId id){
         competition_service.delete(competition_service.findById(id));
     }
 
+    /**
+     * @HTTP_Verb PUT
+     * @Example Local : http://localhost:8080/competition/62986c830c858276ddfcead5
+     * @param id : ID de la competition recherchée
+     */
     @PutMapping("/{id}")
     public void updatePilote(@PathVariable ObjectId id, @RequestBody Competition competition){
         competition_service.update(id, competition);
     }
 
+    /**
+     * @HTTP_Verb PUT
+     * @Example Local : http://localhost:8080/competition/setPodium/62986c830c858276ddfcead5
+     * @param id : ID de la competition recherchée
+     */
     @PutMapping("/setPodium/{id}")
     public void addPilote(@PathVariable ObjectId id, @RequestBody List<ObjectId> pilotes){
         competition_service.setPoduim(id, pilotes.get(0), pilotes.get(1), pilotes.get(2));
