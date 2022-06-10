@@ -63,7 +63,7 @@ public class Pilote_Controller {
 
     /**
      * @HTTP_Verb GET
-     * @Example local : http://localhost:8080/pilote/nation/Français
+     * @Example local : http://localhost:8080/pilote/nation/FR
      * @return Retourne les pilote recherchés
      * @param nationalite Nationalité des pilote que l'on recherche
      */
