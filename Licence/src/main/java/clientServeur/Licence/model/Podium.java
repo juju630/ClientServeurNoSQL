@@ -1,6 +1,7 @@
 package clientServeur.Licence.model;
 
 import clientServeur.Licence.dto.Pilote_Dto;
+import clientServeur.Licence.dto.Podium_Dto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,5 +43,11 @@ public class Podium {
     }
     public Podium(){
 
+    }
+
+    public Podium(Podium_Dto podium_dto) {
+        this.premier = new Pilote(podium_dto.getPremier());
+        this.deuxieme = new Pilote(podium_dto.getDeuxieme());
+        this.troisieme = new Pilote(podium_dto.getTroisieme());
     }
 }

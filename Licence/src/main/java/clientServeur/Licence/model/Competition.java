@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -26,6 +27,7 @@ public class Competition {
     private String name;
     @Field(value = "annee")
     private Integer annee;
+    @DBRef
     @Field(value = "podium")
     private Podium podium;
 
@@ -41,7 +43,7 @@ public class Competition {
     public Competition(Competition_Dto competition_dto) {
         this.name = competition_dto.getNom();
         this.annee = competition_dto.getAnnee();
-        this.podium = competition_dto.getPodium();
+        this.podium = new Podium(competition_dto.getPodium());
     }
 }
 

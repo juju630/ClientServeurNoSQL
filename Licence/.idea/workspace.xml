@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d77bfc7-2c55-4674-aea4-2b6883dbd030" name="Changes" comment="Changement de fonctionnement pour les post mappings -&gt; RequestBody">
-      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/controller/Pilote_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/controller/Pilote_Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Competition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Competition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Competition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Competition.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
