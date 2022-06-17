@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -24,6 +26,7 @@ public class Pilote {
     private String name;
     @Field(value = "dateNaissance")
     private Date dateNaissance;
+    @Indexed(name = "nationalite_index", direction = IndexDirection.DESCENDING)
     @Field(value = "nationalite")
     private String nationalite;
 

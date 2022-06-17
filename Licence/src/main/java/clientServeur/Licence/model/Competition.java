@@ -6,6 +6,8 @@ import lombok.experimental.Accessors;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -26,6 +28,7 @@ public class Competition {
 
     @Field(value = "name")
     private String name;
+    @Indexed(name = "annee_index", direction = IndexDirection.DESCENDING)
     @Field(value = "annee")
     private Integer annee;
     @DBRef
