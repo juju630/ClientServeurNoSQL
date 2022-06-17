@@ -1896,6 +1896,58 @@
 							"width": 60,
 							"height": 25,
 							"text": "0.n"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAGBca2C/mi2GCk=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 168,
+							"top": 104,
+							"width": 193,
+							"height": 104,
+							"text": "Contient une liste de pilote (2 pilotes) ainsi que les caractéristiques de l'écurie"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAGBca6dmmneMow=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 728,
+							"top": 224,
+							"width": 145,
+							"height": 57,
+							"text": "Contient seulement les données du pilote"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAGBca8dCmp0Q2M=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 520,
+							"top": 760,
+							"width": 216,
+							"height": 90,
+							"text": "Un Podium contient 3 pilotes distinct (pas une liste), représentant les places sur le podium. (les pilotes ne sont pas ajoutés à une compétition, seulement le podium)."
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAGBcbBjL2ruElk=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 920,
+							"top": 760,
+							"width": 184,
+							"height": 88,
+							"text": "Une Compétition contient ses informations ainsi que le podium de la course (pas le reste)"
 						}
 					]
 				},
