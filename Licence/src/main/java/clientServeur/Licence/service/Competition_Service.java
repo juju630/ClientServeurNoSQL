@@ -24,6 +24,8 @@ public class Competition_Service {
     private Competition_Repository competition_repository;
     @Autowired
     private Pilote_Repository pilote_repository;
+    @Autowired
+    private Podium_Service podium_service;
 
 
     public List<Competition> findAll(){
@@ -58,7 +60,6 @@ public class Competition_Service {
             }else{
                 competition_dto.setType("F1");
             }
-            competition_dto.setPodium(new Podium_Dto());
             competition_repository.save(new Competition(competition_dto));
         }else{
             competition_repository.save(new Competition("a", 2022, null, null, 0, null));
@@ -85,10 +86,10 @@ public class Competition_Service {
                 });
     }
 
-    public void setPoduim(ObjectId id, ObjectId pilote1, ObjectId pilote2, ObjectId pilote3){
+    public void setPoduim(ObjectId id, String idP){
         competition_repository.findById(id)
                 .map(competition -> {
-                    competition.setPodium(new Podium(pilote_repository.findById(pilote1).get(), pilote_repository.findById(pilote2).get(), pilote_repository.findById(pilote3).get()));
+                    competition.setPodium(podium_service.findById(idP));
                     return competition_repository.save(competition);
                 });
     }

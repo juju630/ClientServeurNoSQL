@@ -22,7 +22,7 @@ public interface Pilote_Repository extends MongoRepository<Pilote, ObjectId> {
     @Query("{nationalite:'?0'}")
     List<Pilote> findByNationalite(String nationalite);
 
-    List<Pilote> findByName(String name);
+    Pilote findByName(String name);
 
     List<Pilote> findByDateNaissanceAfter(Date dateNaissance);
 

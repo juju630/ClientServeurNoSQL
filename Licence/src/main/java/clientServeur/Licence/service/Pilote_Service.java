@@ -36,6 +36,15 @@ public class Pilote_Service {
         return optionalPilote.get();
     }
 
+    public Pilote findByNom(String name) {
+        Pilote optionalPilote;
+        optionalPilote =  pilote_repository.findByName(name);
+        if(optionalPilote == null){
+            throw new ItemNotFoundException();
+        }
+        return optionalPilote;
+    }
+
     public List<Pilote> findAllByNationalite(String nationalite) {
         return pilote_repository.findByNationalite(nationalite);
     }
@@ -73,6 +82,7 @@ public class Pilote_Service {
                     return pilote_repository.save(newPilote);
                 });
     }
+
 
 
 }

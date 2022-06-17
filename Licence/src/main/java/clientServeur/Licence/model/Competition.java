@@ -54,6 +54,7 @@ public class Competition {
     public Competition(Competition_Dto competition_dto) {
         this.name = competition_dto.getNom();
         this.annee = competition_dto.getAnnee();
+        if(competition_dto.getPodium() != null)
         this.podium = new Podium(competition_dto.getPodium());
         this.type = competition_dto.getType();
         this.edition = competition_dto.getEdition();;

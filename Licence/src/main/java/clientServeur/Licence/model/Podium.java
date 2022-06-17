@@ -1,11 +1,7 @@
 package clientServeur.Licence.model;
 
-import clientServeur.Licence.dto.Pilote_Dto;
 import clientServeur.Licence.dto.Podium_Dto;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -13,8 +9,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
-import java.util.Date;
 
 @Data
 @Accessors
@@ -46,8 +40,11 @@ public class Podium {
     }
 
     public Podium(Podium_Dto podium_dto) {
-        this.premier = new Pilote(podium_dto.getPremier());
-        this.deuxieme = new Pilote(podium_dto.getDeuxieme());
-        this.troisieme = new Pilote(podium_dto.getTroisieme());
+        if(podium_dto.getPremier() != null)
+            this.premier = new Pilote(podium_dto.getPremier());
+        if(podium_dto.getDeuxieme() != null)
+            this.deuxieme = new Pilote(podium_dto.getDeuxieme());
+        if(podium_dto.getTroisieme() != null)
+            this.troisieme = new Pilote(podium_dto.getTroisieme());
     }
 }

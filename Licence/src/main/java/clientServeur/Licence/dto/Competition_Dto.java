@@ -30,7 +30,7 @@ public class Competition_Dto {
         nom = competition.getName();
         annee = competition.getAnnee();
         type = competition.getType();
-        edition = competition.getEdition();;
+        edition = competition.getEdition();
         organisateur = competition.getOrganisateur();
         if (competition.getPodium() != null){
             podium = new Podium_Dto(competition.getPodium());
