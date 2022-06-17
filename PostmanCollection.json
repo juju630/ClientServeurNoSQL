@@ -34,7 +34,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pilote/629859a76dee6a05ce365a10",
+							"raw": "http://localhost:8080/pilote/62a30c56d141556cdd21c297",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -42,7 +42,7 @@
 							"port": "8080",
 							"path": [
 								"pilote",
-								"629859a76dee6a05ce365a10"
+								"62a30c56d141556cdd21c297"
 							]
 						}
 					},
@@ -54,7 +54,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pilote/nation/Français",
+							"raw": "http://localhost:8080/pilote/nation/FR",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -63,7 +63,7 @@
 							"path": [
 								"pilote",
 								"nation",
-								"Français"
+								"FR"
 							]
 						}
 					},
@@ -105,13 +105,35 @@
 					"response": []
 				},
 				{
+					"name": "Get Nombre of Pilote With Nationalite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pilote/nationalite/Sum/FR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pilote",
+								"nationalite",
+								"Sum",
+								"FR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"nom\": \"Hugo le mauvais\",\n        \"dateNaissance\": \"2000-12-08T00:00:00.000+00:00\",\n        \"nationalite\": \"Français\"\n}",
+							"raw": "{\n        \"nom\": \"Tristan\",\n        \"dateNaissance\": \"1997-12-08T00:00:00.000+00:00\",\n        \"nationalite\": \"FR\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,7 +161,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pilote/6299cfae33090e21943f30f9",
+							"raw": "http://localhost:8080/pilote/62a30ac6d141556cdd21c296",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -147,7 +169,7 @@
 							"port": "8080",
 							"path": [
 								"pilote",
-								"6299cfae33090e21943f30f9"
+								"62a30ac6d141556cdd21c296"
 							]
 						}
 					},
@@ -233,7 +255,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ecurie/name",
+							"raw": "http://localhost:8080/ecurie/name/Mercedes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -241,7 +263,8 @@
 							"port": "8080",
 							"path": [
 								"ecurie",
-								"name"
+								"name",
+								"Mercedes"
 							]
 						}
 					},
@@ -296,7 +319,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nom\": \"Mercedes\",\n    \"lieu\": \"Berlin\",\n    \"nationalite\": \"Allemande\",\n    \"pilotes\": []\n}",
+							"raw": "{\n    \"nom\": \"Mercedes\",\n    \"lieu\": \"Berlin\",\n    \"nationalite\": \"DU\",\n    \"pilotes\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -304,7 +327,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ecurie/62986b1487be757e3ba1e905",
+							"raw": "http://localhost:8080/ecurie/62a1f058d1f80a27499d2d0f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -312,7 +335,7 @@
 							"port": "8080",
 							"path": [
 								"ecurie",
-								"62986b1487be757e3ba1e905"
+								"62a1f058d1f80a27499d2d0f"
 							]
 						}
 					},
@@ -502,7 +525,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/competition/setPodium/",
+							"raw": "http://localhost:8080/competition/setPodium/62ac758955a10a045fc0466b?idPodium=62ac720be096b512ab43ba95",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -511,7 +534,13 @@
 							"path": [
 								"competition",
 								"setPodium",
-								""
+								"62ac758955a10a045fc0466b"
+							],
+							"query": [
+								{
+									"key": "idPodium",
+									"value": "62ac720be096b512ab43ba95"
+								}
 							]
 						}
 					},
@@ -524,7 +553,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nom\": \"LeMans\",\n    \"annee\": 2022,\n    \"podium\": []\n}",
+							"raw": "{\n    \"nom\": \"Le Mans\",\n    \"annee\": 2022,\n    \"type\":\"F1\",\n    \"edition\": 2,\n    \"organisateur\":\"Gouvernement\"\n\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -552,7 +581,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/competition/62986c830c858276ddfcead5",
+							"raw": "http://localhost:8080/competition/62ac749d1175bd6954abb2aa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -560,7 +589,70 @@
 							"port": "8080",
 							"path": [
 								"competition",
-								"62986c830c858276ddfcead5"
+								"62ac749d1175bd6954abb2aa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Podium",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/podium/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"podium",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"premier\":{\n        \"nom\": \"Hugo\",\n        \"dateNaissance\": \"2000-12-08T00:00:00.000+00:00\",\n        \"nationalite\": \"FR\"\n    },\n    \"deuxieme\":{\n        \"nom\": \"Julien\",\n        \"dateNaissance\": \"2000-12-08T00:00:00.000+00:00\",\n        \"nationalite\": \"FR\"\n    },\n    \"troisieme\":{\n        \"nom\": \"Tristan\",\n        \"dateNaissance\": \"2000-12-08T00:00:00.000+00:00\",\n        \"nationalite\": \"FR\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/podium/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"podium",
+								""
 							]
 						}
 					},
