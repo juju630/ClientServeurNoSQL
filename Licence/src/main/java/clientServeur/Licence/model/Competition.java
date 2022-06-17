@@ -3,6 +3,7 @@ package clientServeur.Licence.model;
 import clientServeur.Licence.dto.Competition_Dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -30,11 +31,21 @@ public class Competition {
     @DBRef
     @Field(value = "podium")
     private Podium podium;
+    @Field(value = "type")
+    private String type;
+    @Field(value = "edition")
+    private int edition;
+    @Field(value = "organisateur")
+    private String organisateur;
 
-    public Competition(String name, Integer annee, Podium podium) {
+
+    public Competition(String name, Integer annee, Podium podium, String type, int edition, String organisateur) {
         this.name = name;
         this.annee = annee;
         this.podium = podium;
+        this.type = type;
+        this.edition = edition;
+        this.organisateur = organisateur;
     }
 
     public Competition() {
@@ -44,6 +55,9 @@ public class Competition {
         this.name = competition_dto.getNom();
         this.annee = competition_dto.getAnnee();
         this.podium = new Podium(competition_dto.getPodium());
+        this.type = competition_dto.getType();
+        this.edition = competition_dto.getEdition();;
+        this.organisateur = competition_dto.getOrganisateur();
     }
 }
 

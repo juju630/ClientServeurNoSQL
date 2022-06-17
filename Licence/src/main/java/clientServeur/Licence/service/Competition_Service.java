@@ -52,10 +52,16 @@ public class Competition_Service {
 
     public void create(Competition_Dto competition_dto){
         if(competition_dto.getNom() != null || !competition_dto.getNom().isEmpty()){
+            
+            if(competition_dto.getOrganisateur() == null){
+                competition_dto.setType("F2");
+            }else{
+                competition_dto.setType("F1");
+            }
             competition_dto.setPodium(new Podium_Dto());
             competition_repository.save(new Competition(competition_dto));
         }else{
-            competition_repository.save(new Competition("a", 2022, null));
+            competition_repository.save(new Competition("a", 2022, null, null, 0, null));
         }
     }
 
