@@ -53,6 +53,7 @@ classDiagram
             -Pilote troisieme
       }
 ```
+PS : un diagramme uml nommé uml_NoSQL.drawio montre le lien entre les documents. Pour l'ouvrir : https://app.diagrams.net/ 
 
 ## CONTACT
 
