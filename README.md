@@ -34,7 +34,10 @@ classDiagram
       class Competition{
             -String name
             -Integer annee
-            -List:Pilote podium
+            -Podium podium
+            -String type
+            -int edition
+            -String organisateur
       }
       
       class Ecurie{
@@ -42,6 +45,12 @@ classDiagram
              -String lieu
              -String nationalite
              -List:Pilote pilotes
+      }
+      
+      class Podium{
+            -Pilote premier
+            -Pilote deuxieme
+            -Pilote troisieme
       }
 ```
 
