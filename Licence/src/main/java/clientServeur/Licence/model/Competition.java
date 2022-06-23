@@ -6,6 +6,9 @@ import lombok.experimental.Accessors;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -25,8 +28,10 @@ public class Competition {
 
     @Field(value = "name")
     private String name;
+    @Indexed(name = "annee_index", direction = IndexDirection.DESCENDING)
     @Field(value = "annee")
     private Integer annee;
+    @DBRef
     @Field(value = "podium")
     private Podium podium;
     @Field(value = "type")
@@ -53,7 +58,8 @@ public class Competition {
     public Competition(Competition_Dto competition_dto) {
         this.name = competition_dto.getNom();
         this.annee = competition_dto.getAnnee();
-        this.podium = competition_dto.getPodium();
+        if(competition_dto.getPodium() != null)
+        this.podium = new Podium(competition_dto.getPodium());
         this.type = competition_dto.getType();
         this.edition = competition_dto.getEdition();;
         this.organisateur = competition_dto.getOrganisateur();

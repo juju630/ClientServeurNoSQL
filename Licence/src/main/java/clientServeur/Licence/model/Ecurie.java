@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @Data
 @Accessors
 @Document(collection = "Ecurie")
+@CompoundIndex(def = "{'lieu':1, 'nationalite':1}", name = "compound_index")
 public class Ecurie {
 
     @Id

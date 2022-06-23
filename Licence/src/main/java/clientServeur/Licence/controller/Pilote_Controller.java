@@ -6,19 +6,16 @@ import clientServeur.Licence.dto.QueryAggregation.Pilote_Count_Nationalite_Dto;
 import clientServeur.Licence.exception.InternalErrorException;
 import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
-import clientServeur.Licence.model.QueryAggregation.Pilote_Count_Nationalite;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import clientServeur.Licence.service.Pilote_Service;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import clientServeur.Licence.service.Pilote_Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/pilote")
@@ -110,9 +107,15 @@ public class Pilote_Controller {
         }
     }
 
+    /**
+     * @HTTP_Verb GET
+     * @Example local : http://localhost:8080/pilote/nationalite/Sum/FR
+     * @param nationalite
+     * @return retourne le nombre de Pilote par nationalité
+     */
         @GetMapping("/nationalite/Sum/{nationalite}")
-    public List<Pilote_Count_Nationalite_Dto> getNumberOfPiloteWithNationalite(@PathVariable String nationalite){
-        return pilote_service.getNumberOfPiloteWithNationalite(nationalite).stream().map(Pilote_Count_Nationalite_Dto::new).collect(Collectors.toList());
+    public Pilote_Count_Nationalite_Dto getNumberOfPiloteWithNationalite(@PathVariable String nationalite){
+        return pilote_service.getNumberOfPiloteWithNationalite(nationalite);
     }
 
 

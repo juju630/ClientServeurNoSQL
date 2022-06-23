@@ -20,7 +20,7 @@ public class Competition_Dto {
     private String id;
     private String nom;
     private Integer annee;
-    private Podium podium;
+    private Podium_Dto podium;
     private String type;
     private int edition;
     private String organisateur;
@@ -30,10 +30,10 @@ public class Competition_Dto {
         nom = competition.getName();
         annee = competition.getAnnee();
         type = competition.getType();
-        edition = competition.getEdition();;
+        edition = competition.getEdition();
         organisateur = competition.getOrganisateur();
         if (competition.getPodium() != null){
-            podium = competition.getPodium();
+            podium = new Podium_Dto(competition.getPodium());
         } else {
             podium = null;
         }

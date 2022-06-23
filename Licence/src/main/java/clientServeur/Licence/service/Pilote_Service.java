@@ -1,16 +1,13 @@
 package clientServeur.Licence.service;
 
+import clientServeur.Licence.dto.QueryAggregation.Pilote_Count_Nationalite_Dto;
 import clientServeur.Licence.exception.ItemNotFoundException;
 import clientServeur.Licence.model.Pilote;
-import clientServeur.Licence.model.QueryAggregation.Pilote_Count_Nationalite;
+import clientServeur.Licence.repository.Pilote_Repository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import clientServeur.Licence.repository.Pilote_Repository;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +33,15 @@ public class Pilote_Service {
         return optionalPilote.get();
     }
 
+    public Pilote findByNom(String name) {
+        Pilote optionalPilote;
+        optionalPilote =  pilote_repository.findByName(name);
+        if(optionalPilote == null){
+            throw new ItemNotFoundException();
+        }
+        return optionalPilote;
+    }
+
     public List<Pilote> findAllByNationalite(String nationalite) {
         return pilote_repository.findByNationalite(nationalite);
     }
@@ -44,8 +50,13 @@ public class Pilote_Service {
         return pilote_repository.findByDateNaissanceAfter(dateNaissance);
     }
 
-    public List<Pilote_Count_Nationalite> getNumberOfPiloteWithNationalite(String nationalite) {
-        return pilote_repository.getNumberOfPiloteWithNationalite(nationalite);
+    public Pilote_Count_Nationalite_Dto getNumberOfPiloteWithNationalite(String nationalite) {
+        Pilote_Count_Nationalite_Dto pilote_count_nationalite_dto = new Pilote_Count_Nationalite_Dto();
+        pilote_count_nationalite_dto.setNumberOfPilote(pilote_repository.getNumberOfPiloteWithNationalite(nationalite));
+        if(pilote_count_nationalite_dto.getNumberOfPilote() == null)
+            pilote_count_nationalite_dto.setNumberOfPilote(0);
+        pilote_count_nationalite_dto.setNationalite(nationalite);
+        return pilote_count_nationalite_dto;
     }
 
     public void create(Pilote pilote) {
@@ -79,6 +90,7 @@ public class Pilote_Service {
                     return pilote_repository.save(newPilote);
                 });
     }
+
 
 
 }

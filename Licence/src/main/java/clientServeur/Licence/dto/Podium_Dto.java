@@ -1,13 +1,10 @@
 package clientServeur.Licence.dto;
 
-import clientServeur.Licence.model.Pilote;
 import clientServeur.Licence.model.Podium;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -21,21 +18,23 @@ public class Podium_Dto {
     private Pilote_Dto troisieme;
 
     public Podium_Dto(Podium podium) {
-        this.id = podium.getId().toHexString();
-        if (podium.getPremier() != null){
-            premier = new Pilote_Dto(podium.getPremier());
-        } else {
-            premier = null;
-        }
-        if (podium.getDeuxieme() != null){
-            deuxieme = new Pilote_Dto(podium.getDeuxieme());
-        } else {
-            deuxieme = null;
-        }
-        if (podium.getTroisieme() != null){
-            troisieme = new Pilote_Dto(podium.getTroisieme());
-        } else {
-            troisieme = null;
+        if(podium.getId() != null) {
+            this.id = podium.getId().toHexString();
+            if (podium.getPremier() != null) {
+                premier = new Pilote_Dto(podium.getPremier());
+            } else {
+                premier = null;
+            }
+            if (podium.getDeuxieme() != null) {
+                deuxieme = new Pilote_Dto(podium.getDeuxieme());
+            } else {
+                deuxieme = null;
+            }
+            if (podium.getTroisieme() != null) {
+                troisieme = new Pilote_Dto(podium.getTroisieme());
+            } else {
+                troisieme = null;
+            }
         }
     }
 }

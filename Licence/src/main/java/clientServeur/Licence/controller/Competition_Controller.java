@@ -131,7 +131,7 @@ public class Competition_Controller {
      * @param id : ID de la competition recherchée
      */
     @PutMapping("/setPodium/{id}")
-    public void addPilote(@PathVariable ObjectId id, @RequestBody List<ObjectId> pilotes){
-        competition_service.setPoduim(id, pilotes.get(0), pilotes.get(1), pilotes.get(2));
+    public void addPilote(@PathVariable ObjectId id,@RequestParam("idPodium") String idP){
+        competition_service.setPoduim(id,idP);
     }
 }
