@@ -21,6 +21,10 @@ Le 'Pilote_Service' permet d'obtenir les données des pilotes contenues dans la 
 Le 'Ecurie_Service' permet d'obtenir les données des écuries. Il est possible de récupérer la liste des écuries complètes, ou de filtrer la recherche avec l'id, la nationalité ou le lieu.
 Le 'Competition_Service' fait de même pour les compétitions, et le 'Podium_Service' de même pour les podiums.
 
+## tests
+Des tests ont étés fait sur les compétitions afin de vérifier l'instanciation de leur type ils sont fonctionnels et peuvent être lancés.
+Un test vérifie qu'on crée bien une compétition de type F1 et l'autre de type F2.
+
 ## Model
 
 ```mermaid
