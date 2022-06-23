@@ -103,14 +103,6 @@ public class Competition_Controller {
     @PostMapping
     public void createCompetition(@RequestBody Competition_Dto competition_dto){
         competition_service.create(competition_dto);
-        /*
-        pour créer une compétition avec le sous document podium :
-        {
-            "nom": "Competition test",
-            "annee": 2022,
-            "podium": {}
-        }
-         */
     }
 
     /**

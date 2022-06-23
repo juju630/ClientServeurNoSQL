@@ -70,15 +70,19 @@ public class Competition_Service {
     public void update(ObjectId id, Competition newCompetition){
         competition_repository.findById(id)
                 .map(competition -> {
-                    competition.setName(newCompetition.getName());
-                    competition.setAnnee(newCompetition.getAnnee());
+                    if(newCompetition.getName() != null){
+                        competition.setName(newCompetition.getName());
+                    }
+                    if(newCompetition.getAnnee() != null){
+                        competition.setAnnee(newCompetition.getAnnee());
+                    }
                     if(newCompetition.getPodium() != null){
                         competition.setPodium(newCompetition.getPodium());
                     }
                     return competition_repository.save(competition);
                 })
                 .orElseGet(() -> {
-                    newCompetition.setId(id);
+                    //newCompetition.setId(id);
                     return competition_repository.save(newCompetition);
                 });
     }

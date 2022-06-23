@@ -33,6 +33,7 @@ public class Competition {
     private String type;
     @Field(value = "edition")
     private int edition;
+    //organisateur set uniquement si la competition est de type F1
     @Field(value = "organisateur")
     private String organisateur;
 

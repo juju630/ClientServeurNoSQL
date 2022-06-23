@@ -63,13 +63,19 @@ public class Pilote_Service {
     public void update(ObjectId id, Pilote newPilote){
         pilote_repository.findById(id)
                 .map(pilote -> {
-                    pilote.setName(newPilote.getName());
-                    pilote.setNationalite(newPilote.getNationalite());
-                    pilote.setDateNaissance(newPilote.getDateNaissance());
+                    if(newPilote.getName() != null){
+                        pilote.setName(newPilote.getName());
+                    }
+                    if(newPilote.getNationalite() != null ){
+                        pilote.setNationalite(newPilote.getNationalite());
+                    }
+                    if(newPilote.getDateNaissance() != null){
+                        pilote.setDateNaissance(newPilote.getDateNaissance());
+                    }
                     return pilote_repository.save(pilote);
                 })
                 .orElseGet(() -> {
-                    newPilote.setId(id);
+                    //newPilote.setId(id);
                     return pilote_repository.save(newPilote);
                 });
     }

@@ -58,9 +58,9 @@ public class Ecurie_Service {
 
     public void create(Ecurie ecurie, List<Pilote> pilotes){
         if(ecurie.getName() != null || !ecurie.getName().isEmpty()){
-            if(pilotes == null){
+            /*if(pilotes == null){
                 pilotes = new ArrayList<Pilote>();
-            }
+            }*/
             ecurie.setPilotes(pilotes);
             ecurie_Repository.save(ecurie);
         }else{
@@ -76,16 +76,22 @@ public class Ecurie_Service {
     public void update(ObjectId id, Ecurie newEcurie){
         ecurie_Repository.findById(id)
                 .map(ecurie -> {
-                    ecurie.setName(newEcurie.getName());
-                    ecurie.setLieu(newEcurie.getLieu());
-                    ecurie.setNationalite(newEcurie.getNationalite());
+                    if(newEcurie.getName() != null){
+                        ecurie.setName(newEcurie.getName());
+                    }
+                    if(newEcurie.getLieu() != null){
+                        ecurie.setLieu(newEcurie.getLieu());
+                    }
+                    if(newEcurie.getNationalite() != null){
+                        ecurie.setNationalite(newEcurie.getNationalite());
+                    }
                     if(newEcurie.getPilotes() != null){
                         ecurie.setPilotes(newEcurie.getPilotes());
                     }
                     return ecurie_Repository.save(ecurie);
                 })
                 .orElseGet(() -> {
-                    newEcurie.setId(id);
+                    //newEcurie.setId(id);
                     return ecurie_Repository.save(newEcurie);
                 });
     }

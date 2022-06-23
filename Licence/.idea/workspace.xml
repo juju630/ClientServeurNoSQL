@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d77bfc7-2c55-4674-aea4-2b6883dbd030" name="Changes" comment="Changement de fonctionnement pour les post mappings -&gt; RequestBody">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/clientServeur/Licence/pilote/PiloteTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/dto/Competition_Dto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/dto/Competition_Dto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/controller/Competition_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/controller/Competition_Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/dto/Ecurie_Dto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/dto/Ecurie_Dto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Competition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Competition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Pilote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/model/Pilote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Competition_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Competition_Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Ecurie_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Ecurie_Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Pilote_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/clientServeur/Licence/service/Pilote_Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/clientServeur/Licence/competition/CompetitionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/clientServeur/Licence/competition/CompetitionTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/controller/Competition_Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/controller/Competition_Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/dto/Ecurie_Dto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/dto/Ecurie_Dto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Competition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Competition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/repository/Pilote_Repository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/repository/Pilote_Repository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Pilote.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/model/Pilote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Competition_Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Competition_Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Ecurie_Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Ecurie_Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Pilote_Service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/clientServeur/Licence/service/Pilote_Service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/clientServeur/Licence/competition/CompetitionTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/clientServeur/Licence/competition/CompetitionTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +62,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CompetitionTests">
     <configuration name="LicenceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="/usr/lib/jvm/java-1.11.0-openjdk-amd64" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -60,6 +72,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CompetitionTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Licence" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="clientServeur.Licence.competition.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="clientServeur.Licence.competition" />
+      <option name="MAIN_CLASS_NAME" value="clientServeur.Licence.competition.CompetitionTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompetitionTests.testTypeF2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Licence" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="clientServeur.Licence.competition.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="clientServeur.Licence.competition" />
+      <option name="MAIN_CLASS_NAME" value="clientServeur.Licence.competition.CompetitionTests" />
+      <option name="METHOD_NAME" value="testTypeF2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CompetitionTests" />
+        <item itemvalue="JUnit.CompetitionTests.testTypeF2" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
